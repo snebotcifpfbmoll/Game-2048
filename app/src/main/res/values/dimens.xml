@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_margin">5sp</dimen>
+    <dimen name="min_size">100sp</dimen>
+    <dimen name="cell_margin">2sp</dimen>
+</resources>
