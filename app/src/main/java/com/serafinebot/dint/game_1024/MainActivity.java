@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     private static final String TAG = "MainActivity";
     private static final int GRID_WIDTH = 4;
     private static final int GRID_HEIGHT = 4;
+    private static final int START_NUMBER = 8;
     private final int[] grid = new int[GRID_HEIGHT * GRID_WIDTH];
     private final List<CellTextView> cells = new ArrayList<>();
     private GridLayout gameLayout;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         for (int y = 0; y < GRID_HEIGHT; y++) {
             for (int x = 0; x < GRID_WIDTH; x++) {
                 int random = (int) (Math.random() * (100 + 1) + 0);
-                if (random >= 50) setVal(x, y, random);
+                if (random >= 50) setVal(x, y, START_NUMBER);
             }
         }
         updateGrid();
@@ -82,11 +83,17 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         do {
             nextX += xInc;
             nextY += yInc;
+            if (!(inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) break;
+            int val = getVal(x, y);
             int next = getVal(nextX, nextY);
-            if (next == 0 && (inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) {
+            if (next == 0) {
                 move(x, y, nextX, nextY);
                 x = nextX;
                 y = nextY;
+            } else if (next == val) {
+                int sum = next + val;
+                setVal(nextX, nextY, sum);
+                setVal(x, y, 0);
             } else {
                 break;
             }
