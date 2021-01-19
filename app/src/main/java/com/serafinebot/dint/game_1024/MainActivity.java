@@ -54,44 +54,69 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         }
     }
 
+    public boolean inBounds(int val, int x, int y) {
+        return val >= x && val <= y;
+    }
+
     public int getVal(int x, int y) {
-        if ((x < 0 || x >= GRID_WIDTH) || (y < 0 || y >= GRID_HEIGHT)) return 0;
+        if (!inBounds(x, 0, GRID_WIDTH - 1) || !inBounds(y, 0, GRID_HEIGHT - 1)) return 0;
         return this.grid[(y * GRID_WIDTH) + x];
     }
 
     public void setVal(int x, int y, int val) {
-        if ((x < 0 || x >= GRID_WIDTH) || (y < 0 || y >= GRID_HEIGHT)) return;
+        if (!inBounds(x, 0, GRID_WIDTH - 1) || !inBounds(y, 0, GRID_HEIGHT - 1)) return;
         this.grid[(y * GRID_WIDTH) + x] = val;
     }
 
     public void move(int srcX, int srcY, int dstX, int dstY) {
-        if (((srcX < 0 || srcX >= GRID_WIDTH) || (srcY < 0 || srcY >= GRID_HEIGHT)) ||
-                ((dstX < 0 || dstX >= GRID_WIDTH) || (dstY < 0 || dstY >= GRID_HEIGHT))) return;
+        if (!inBounds(srcX, 0, GRID_WIDTH - 1) || !inBounds(srcY, 0, GRID_HEIGHT - 1) ||
+                !inBounds(srcX, 0, GRID_WIDTH - 1) || !inBounds(srcY, 0, GRID_HEIGHT - 1)) return;
         int val = getVal(srcX, srcY);
         setVal(dstX, dstY, val);
         setVal(srcX, srcY, 0);
     }
 
+    public void makeMove(int x, int y, final int xInc, final int yInc) {
+        int nextX = x;
+        int nextY = y;
+        do {
+            nextX += xInc;
+            nextY += yInc;
+            int next = getVal( nextX, nextY);
+            if (next == 0 && (inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) {
+                move(x, y, nextX, nextY);
+                x = nextX;
+                y = nextY;
+            } else {
+                break;
+            }
+        } while (inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1));
+    }
+
     @Override
     public void didSwipe(SwipeDirection direction) {
         Toast.makeText(this, direction.name(), Toast.LENGTH_SHORT).show();
+        int xinc = 0;
+        int yinc = 0;
+        switch (direction) {
+            case LEFT:
+                xinc = -1;
+                break;
+            case RIGHT:
+                xinc = 1;
+                break;
+            case TOP:
+                yinc = -1;
+                break;
+            case BOTTOM:
+                yinc = 1;
+                break;
+        }
         for (int y = 0; y < GRID_HEIGHT; y++) {
             for (int x = 0; x < GRID_WIDTH; x++) {
                 int val = getVal(x, y);
                 if (val == 0) continue;
-                int dstX = x;
-                int tmpX = x;
-                int nextVal = 0;
-                boolean should_move = false;
-                do {
-                    tmpX -= 1;
-                    nextVal = getVal(tmpX, y);
-                    if (nextVal == 0 && (tmpX >= 0 && tmpX < GRID_WIDTH)) {
-                        dstX = tmpX;
-                        should_move = true;
-                    }
-                } while (tmpX > 0 && nextVal == 0);
-                if (should_move) move(x, y, dstX, y);
+                makeMove(x, y, xinc, yinc);
             }
         }
         updateGrid();
