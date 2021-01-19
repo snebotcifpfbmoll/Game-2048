@@ -22,8 +22,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnSwipeListenerDelegate {
     private static final String TAG = "MainActivity";
-    private static final int COL_COUNT = 4;
-    private static final int ROW_COUNT = 4;
     private GridLayout gameLayout;
 
     @Override
@@ -37,41 +35,8 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
             View child = this.gameLayout.getChildAt(i);
             if (child instanceof TextView) {
                 TextView textView = (TextView) child;
-                textView.setText(String.format("%d", i));
-                textView.setTextSize(24);
-            }
-        }
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    void setup() {
-        GridLayout gridLayout = findViewById(R.id.gameLayout);
-        gridLayout.setBackgroundColor(Color.GREEN);
-        for (int i = 0; i < COL_COUNT; i++) {
-            for (int j = 0; j < ROW_COUNT; j++) {
-                TextView textView = new TextView(this);
-                textView.setText(R.string.item);
-                textView.setTextSize(24);
-                textView.setBackgroundColor(Color.RED);
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                textView.setPadding(10, 10, 10, 10);
-                textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                textView.setMinWidth(100);
-                textView.setMinHeight(100);
-
-                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-                params.width = 100;
-                params.height = 100;
-                params.topMargin = 5;
-                params.leftMargin = 5;
-                params.rightMargin = 5;
-                params.bottomMargin = 5;
-                params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1.f);
-                params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1.f);
-                params.setGravity(Gravity.CENTER);
-
-                textView.setLayoutParams(params);
-                gridLayout.addView(textView);
+                textView.setText(String.format("%d", i * 100000));
+                cells.add(textView);
             }
         }
     }
