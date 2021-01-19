@@ -1,7 +1,6 @@
 package com.serafinebot.dint.game_1024;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
@@ -38,11 +37,12 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         }
 
         // post setup
-        grid[2] = 9;
-        grid[3] = 1;
-        grid[6] = 2;
-        grid[9] = 3;
-        grid[12] = 4;
+        for (int y = 0; y < GRID_HEIGHT; y++) {
+            for (int x = 0; x < GRID_WIDTH; x++) {
+                int random = (int) (Math.random() * (100 + 1) + 0);
+                if (random >= 50) setVal(x, y, random);
+            }
+        }
         updateGrid();
     }
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         do {
             nextX += xInc;
             nextY += yInc;
-            int next = getVal( nextX, nextY);
+            int next = getVal(nextX, nextY);
             if (next == 0 && (inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) {
                 move(x, y, nextX, nextY);
                 x = nextX;
@@ -93,27 +93,47 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         } while (inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1));
     }
 
+    public boolean getCondition(int add, int current, int end) {
+        return add > 0 ? current <= end : current >= end;
+    }
+
     @Override
     public void didSwipe(SwipeDirection direction) {
         Toast.makeText(this, direction.name(), Toast.LENGTH_SHORT).show();
         int xinc = 0;
         int yinc = 0;
+        int startX = 0;
+        int startY = 0;
+        int endX = GRID_WIDTH;
+        int endY = GRID_HEIGHT;
         switch (direction) {
             case LEFT:
+                startX = 0;
+                endX = GRID_WIDTH - 1;
                 xinc = -1;
                 break;
             case RIGHT:
+                startX = GRID_WIDTH - 1;
+                endX = 0;
                 xinc = 1;
                 break;
             case TOP:
+                startY = 0;
+                endY = GRID_HEIGHT - 1;
                 yinc = -1;
                 break;
             case BOTTOM:
                 yinc = 1;
+                startY = GRID_HEIGHT - 1;
+                endY = 0;
                 break;
         }
-        for (int y = 0; y < GRID_HEIGHT; y++) {
-            for (int x = 0; x < GRID_WIDTH; x++) {
+        int xadd = 1;
+        int yadd = 1;
+        if (Math.min(startX, endX) == endX) xadd = -1;
+        if (Math.min(startY, endY) == endY) yadd = -1;
+        for (int y = startY; getCondition(yadd, y, endY); y += yadd) {
+            for (int x = startX; getCondition(xadd, x, endX); x += xadd) {
                 int val = getVal(x, y);
                 if (val == 0) continue;
                 makeMove(x, y, xinc, yinc);
