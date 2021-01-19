@@ -18,33 +18,45 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     private static final String TAG = "MainActivity";
     private static final int GRID_WIDTH = 4;
     private static final int GRID_HEIGHT = 4;
+    private static final int GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
     private static final int START_NUMBER = 8;
-    private final int[] grid = new int[GRID_HEIGHT * GRID_WIDTH];
+    private final int[] grid = new int[GRID_SIZE];
     private final List<CellTextView> cells = new ArrayList<>();
-    private GridLayout gameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.gameLayout = findViewById(R.id.gameLayout);
-        OnSwipeListener onSwipeListener = new OnSwipeListener(this, this, this.gameLayout);
-        for (int i = 0; i < this.gameLayout.getChildCount(); i++) {
-            View child = this.gameLayout.getChildAt(i);
+        GridLayout gameLayout = findViewById(R.id.gameLayout);
+        new OnSwipeListener(this, this, gameLayout);
+        for (int i = 0; i < gameLayout.getChildCount(); i++) {
+            View child = gameLayout.getChildAt(i);
             if (child instanceof CellTextView) {
                 CellTextView cell = (CellTextView) child;
                 cells.add(cell);
             }
         }
 
-        // post setup
-        for (int y = 0; y < GRID_HEIGHT; y++) {
-            for (int x = 0; x < GRID_WIDTH; x++) {
-                int random = (int) (Math.random() * (100 + 1) + 0);
-                if (random >= 50) setVal(x, y, START_NUMBER);
+        addRandom();
+        updateGrid();
+    }
+
+    public boolean isFilled() {
+        for (int i = 0; i < GRID_SIZE; i++) if (this.grid[i] == 0) return false;
+        return true;
+    }
+
+    public void addRandom() {
+        if (isFilled()) return;
+        int random = (int) (Math.random() * GRID_SIZE);
+        for (int i = random; i < GRID_SIZE + random; i++) {
+            int index = i % GRID_SIZE;
+            int val = this.grid[index];
+            if (val == 0) {
+                this.grid[index] = START_NUMBER;
+                break;
             }
         }
-        updateGrid();
     }
 
     public void updateGrid() {
@@ -106,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
 
     @Override
     public void didSwipe(SwipeDirection direction) {
-        Toast.makeText(this, direction.name(), Toast.LENGTH_SHORT).show();
         int xinc = 0;
         int yinc = 0;
         int startX = 0;
@@ -146,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
                 makeMove(x, y, xinc, yinc);
             }
         }
+        addRandom();
         updateGrid();
     }
 }
