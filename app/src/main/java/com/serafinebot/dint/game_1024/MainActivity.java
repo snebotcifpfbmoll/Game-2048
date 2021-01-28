@@ -3,7 +3,6 @@ package com.serafinebot.dint.game_1024;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +11,7 @@ import com.serafinebot.dint.game_1024.touch.OnSwipeListenerDelegate;
 import com.serafinebot.dint.game_1024.touch.SwipeDirection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnSwipeListenerDelegate {
@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     private static final int GRID_WIDTH = 4;
     private static final int GRID_HEIGHT = 4;
     private static final int GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
-    private static final int START_NUMBER = 8;
+    private static final int START_PERCENT_SMALL = 70;
     private final int[] grid = new int[GRID_SIZE];
+    private final int[] sum = new int[GRID_SIZE];
     private final List<CellTextView> cells = new ArrayList<>();
 
     @Override
@@ -33,10 +34,9 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
             View child = gameLayout.getChildAt(i);
             if (child instanceof CellTextView) {
                 CellTextView cell = (CellTextView) child;
-                cells.add(cell);
+                this.cells.add(cell);
             }
         }
-
         addRandom();
         updateGrid();
     }
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
             int index = i % GRID_SIZE;
             int val = this.grid[index];
             if (val == 0) {
-                this.grid[index] = START_NUMBER;
+                int chance = (int) (Math.random() * 100);
+                int num = chance <= START_PERCENT_SMALL ? 2 : 4;
+                this.grid[index] = num;
                 break;
             }
         }
@@ -72,13 +74,21 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     }
 
     public int getVal(int x, int y) {
+        return getVal(x, y, this.grid);
+    }
+
+    public int getVal(int x, int y, int[] matrix) {
         if (!inBounds(x, 0, GRID_WIDTH - 1) || !inBounds(y, 0, GRID_HEIGHT - 1)) return 0;
-        return this.grid[(y * GRID_WIDTH) + x];
+        return matrix[(y * GRID_WIDTH) + x];
     }
 
     public void setVal(int x, int y, int val) {
+        setVal(x, y, this.grid, val);
+    }
+
+    public void setVal(int x, int y, int[] matrix, int val) {
         if (!inBounds(x, 0, GRID_WIDTH - 1) || !inBounds(y, 0, GRID_HEIGHT - 1)) return;
-        this.grid[(y * GRID_WIDTH) + x] = val;
+        matrix[(y * GRID_WIDTH) + x] = val;
     }
 
     public void move(int srcX, int srcY, int dstX, int dstY) {
@@ -97,14 +107,16 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
             nextY += yInc;
             if (!(inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) break;
             int val = getVal(x, y);
+            int nextSum = getVal(nextX, nextY, this.sum);
             int next = getVal(nextX, nextY);
             if (next == 0) {
                 move(x, y, nextX, nextY);
                 x = nextX;
                 y = nextY;
-            } else if (next == val) {
+            } else if (next == val && nextSum == 0) {
                 int sum = next + val;
                 setVal(nextX, nextY, sum);
+                setVal(nextX, nextY, this.sum, 1);
                 setVal(x, y, 0);
             } else {
                 break;
@@ -146,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
                 endY = 0;
                 break;
         }
+        Arrays.fill(this.sum, 0);
         int xadd = 1;
         int yadd = 1;
         if (Math.min(startX, endX) == endX) xadd = -1;
