@@ -24,15 +24,14 @@
         <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
         <item name="maxHeight">10sp</item>
-        <item name="android:autoSizeTextType">uniform</item>
     </style>
 
     <style name="undo" parent="widget.view">
         <item name="android:minWidth">100sp</item>
         <item name="android:textSize">35sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="backgroundTint">#ff3232</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/undo_disabled</item>
     </style>
 
 </resources>

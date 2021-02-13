@@ -1,9 +1,14 @@
 package com.serafinebot.dint.game_1024;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.serafinebot.dint.game_1024.touch.OnSwipeListener;
@@ -21,15 +26,23 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     private static final int GRID_HEIGHT = 4;
     private static final int GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
     private static final int START_PERCENT_SMALL = 70;
-    private final int[] grid = new int[GRID_SIZE];
+    private int[] grid = new int[GRID_SIZE];
     private final int[] sum = new int[GRID_SIZE];
+    private int[] previous = null;
     private final List<CellTextView> cells = new ArrayList<>();
+
+    private TextView counter = null;
+    private Button undo_button = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        GridLayout gameLayout = findViewById(R.id.gameLayout);
+
+        this.counter = findViewById(R.id.counter);
+        this.undo_button = findViewById(R.id.back_button);
+
+        GridLayout gameLayout = findViewById(R.id.grid);
         new OnSwipeListener(this, this, gameLayout);
         for (int i = 0; i < gameLayout.getChildCount(); i++) {
             View child = gameLayout.getChildAt(i);
@@ -40,6 +53,16 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         }
         addRandom();
         updateGrid();
+    }
+
+    public void undoPressed(@NonNull View view) {
+        if (this.previous != null) {
+            this.grid = this.previous.clone();
+            this.previous = null;
+            updateGrid();
+        } else {
+            Toast.makeText(this, "Unable to undo", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public boolean isFilled() {
@@ -62,12 +85,18 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         }
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     public void updateGrid() {
+        int sum = 0;
         for (int i = 0; i < this.cells.size(); i++) {
             CellTextView cell = this.cells.get(i);
             int val = this.grid[i];
             cell.setText(val == 0 ? "" : String.valueOf(val));
+            sum += val;
         }
+        this.counter.setText(String.valueOf(sum));
+        int color = this.previous == null ? R.color.undo_disabled : R.color.undo_enabled;
+        this.undo_button.setBackgroundTintList(getResources().getColorStateList(color));
     }
 
     public boolean inBounds(int val, int x, int y) {
@@ -129,6 +158,14 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         return add > 0 ? current <= end : current >= end;
     }
 
+    public boolean equal(int[] v1, int[] v2) {
+        if (v1 == null || v2 == null) return false;
+        if (v1.length != v2.length) return false;
+        for (int i = 0; i < v1.length; i++)
+            if (v1[i] != v2[i]) return false;
+        return true;
+    }
+
     @Override
     public void didSwipe(SwipeDirection direction) {
         int xinc = 0;
@@ -160,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
                 break;
         }
         Arrays.fill(this.sum, 0);
+        int[] tmp = this.grid.clone();
         int xadd = 1;
         int yadd = 1;
         if (Math.min(startX, endX) == endX) xadd = -1;
@@ -172,6 +210,8 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
             }
         }
         addRandom();
+        if (!equal(tmp, this.grid))
+            this.previous = tmp;
         updateGrid();
     }
 }
