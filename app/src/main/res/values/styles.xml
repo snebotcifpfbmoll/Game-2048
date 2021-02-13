@@ -7,4 +7,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="widget">
+        <item name="android:background">@drawable/widget_bg</item>
+    </style>
+
+    <style name="widget.view" parent="widget">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="counter" parent="widget.view">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:minWidth">100sp</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

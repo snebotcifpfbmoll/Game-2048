@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_1024;
+package com.serafinebot.dint.game_1024.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,90 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gameLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:columnCount="4"
-    android:orientation="horizontal"
-    android:rowCount="4">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
+    <TextView
+        android:id="@+id/counter"
+        style="@style/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10sp"
+        android:text="@string/counter_start" />
 
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
+    <Button
+        android:id="@+id/back_button"
+        style="@style/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:layout_toEndOf="@id/counter"
+        android:text="@string/undo" />
 
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-
-    <com.serafinebot.dint.game_1024.CellTextView
-        android:layout_width="@dimen/min_size"
-        android:layout_height="@dimen/min_size"
-        android:layout_margin="@dimen/cell_margin"/>
-</GridLayout>
+    <include
+        layout="@layout/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/counter"
+        android:layout_gravity="center" />
+</RelativeLayout>
