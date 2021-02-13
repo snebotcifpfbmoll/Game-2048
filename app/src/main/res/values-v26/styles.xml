@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="counter" parent="widget">
-        <item name="android:fontFamily">monospace</item>
-        <item name="android:gravity">center</item>
-        <item name="android:minWidth">100sp</item>
-        <item name="android:paddingHorizontal">10sp</item>
-        <item name="android:paddingVertical">5sp</item>
-        <item name="android:textSize">35sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="widget.view" parent="widget">
         <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="android:gravity">center</item>
-        <item name="android:minWidth">100sp</item>
         <item name="android:paddingHorizontal">10sp</item>
         <item name="android:paddingVertical">5sp</item>
+    </style>
+
+    <style name="counter" parent="widget.view">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:width">150sp</item>
+        <item name="android:textColor">@color/counter_text</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="maxHeight">10sp</item>
+        <item name="android:autoSizeTextType">uniform</item>
     </style>
 </resources>

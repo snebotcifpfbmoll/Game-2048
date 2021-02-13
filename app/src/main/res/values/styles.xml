@@ -19,9 +19,20 @@
 
     <style name="counter" parent="widget.view">
         <item name="android:fontFamily">monospace</item>
+        <item name="android:width">150sp</item>
+        <item name="android:textColor">@color/counter_text</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="maxHeight">10sp</item>
+        <item name="android:autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="undo" parent="widget.view">
         <item name="android:minWidth">100sp</item>
         <item name="android:textSize">35sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="backgroundTint">#ff3232</item>
     </style>
 
 </resources>
