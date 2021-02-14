@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_1024;
+package com.serafinebot.dint.game_2048;
 
 import android.content.Context;
 

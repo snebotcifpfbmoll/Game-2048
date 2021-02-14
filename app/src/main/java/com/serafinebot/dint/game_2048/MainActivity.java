@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_1024;
+package com.serafinebot.dint.game_2048;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.serafinebot.dint.game_1024.touch.OnSwipeListener;
-import com.serafinebot.dint.game_1024.touch.OnSwipeListenerDelegate;
-import com.serafinebot.dint.game_1024.touch.SwipeDirection;
-import com.serafinebot.dint.game_1024.view.CellTextView;
+import com.serafinebot.dint.game_2048.touch.OnSwipeListener;
+import com.serafinebot.dint.game_2048.touch.OnSwipeListenerDelegate;
+import com.serafinebot.dint.game_2048.touch.SwipeDirection;
+import com.serafinebot.dint.game_2048.view.CellTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

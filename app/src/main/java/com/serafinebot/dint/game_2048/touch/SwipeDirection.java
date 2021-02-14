@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_1024.touch;
+package com.serafinebot.dint.game_2048.touch;
 
 public enum SwipeDirection {
     LEFT, RIGHT, TOP, BOTTOM
