@@ -17,6 +17,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="title" parent="widget.view">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/counter_text</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="counter" parent="widget.view">
         <item name="android:fontFamily">monospace</item>
         <item name="android:width">150sp</item>
