@@ -11,6 +11,8 @@ import android.view.Gravity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.serafinebot.dint.game_2048.R;
+
 public class CellTextView extends androidx.appcompat.widget.AppCompatTextView {
     private static final int MIN_TEXT_SIZE = 1;
     private static final int MAX_TEXT_SIZE = 100;

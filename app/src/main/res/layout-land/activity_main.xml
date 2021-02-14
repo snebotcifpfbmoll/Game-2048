@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/title"
+        android:id="@+id/titleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -29,7 +29,7 @@
         android:layout_marginVertical="40sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/titleContainer"
         android:layout_toStartOf="@id/grid"
         android:gravity="center"
         android:orientation="horizontal">

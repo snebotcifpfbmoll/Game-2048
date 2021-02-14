@@ -1,6 +1,7 @@
 package com.serafinebot.dint.game_2048;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
     private int[] previous = null;
     private final List<CellTextView> cells = new ArrayList<>();
 
+    private String user = null;
+    private TextView title = null;
     private TextView counter = null;
     private Button undo_button = null;
 
@@ -39,8 +42,13 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.title = findViewById(R.id.title);
         this.counter = findViewById(R.id.counter);
         this.undo_button = findViewById(R.id.back_button);
+
+        Intent intent = getIntent();
+        this.user = intent.getStringExtra(LoginActivity.USER_EXTRA);
+        this.title.setText(String.format("%s: 0", this.user));
 
         GridLayout gameLayout = findViewById(R.id.grid);
         new OnSwipeListener(this, this, gameLayout);
