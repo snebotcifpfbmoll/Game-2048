@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Game-1024</string>
+    <string name="app_name">Game 2048</string>
     <string name="item">item</string>
     <string name="counter_start">0</string>
     <string name="undo">Undo</string>
     <string name="default_user">user: 2048</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
 </resources>

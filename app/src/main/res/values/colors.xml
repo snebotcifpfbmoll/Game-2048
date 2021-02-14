@@ -7,4 +7,6 @@
     <color name="counter_text">#4c4c4c</color>
     <color name="undo_enabled">#ff3232</color>
     <color name="undo_disabled">#ff6f6f</color>
+    <color name="button_color">#66b2b2</color>
+    <color name="app_color">#008080</color>
 </resources>
