@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_2048.db;
+package com.serafinebot.dint.game_2048.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import com.serafinebot.dint.game_2048.data.Score;
 
 import java.util.ArrayList;
 import java.util.List;
