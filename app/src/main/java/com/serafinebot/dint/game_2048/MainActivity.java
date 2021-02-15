@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity implements OnSwipeListenerDe
         this.counter = findViewById(R.id.counter);
         this.undo_button = findViewById(R.id.back_button);
 
-        /*Intent intent = getIntent();
-        this.user = intent.getStringExtra(LoginActivity.USER_EXTRA);
-        this.title.setText(String.format("%s: 0", this.user));*/
-
         GridLayout gameLayout = findViewById(R.id.grid);
         new OnSwipeListener(this, this, gameLayout);
         for (int i = 0; i < gameLayout.getChildCount(); i++) {

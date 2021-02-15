@@ -15,7 +15,7 @@ import com.serafinebot.dint.game_2048.R;
 
 public class CellTextView extends androidx.appcompat.widget.AppCompatTextView {
     private static final int MIN_TEXT_SIZE = 1;
-    private static final int MAX_TEXT_SIZE = 100;
+    private static final int MAX_TEXT_SIZE = 50;
 
     public CellTextView(@NonNull Context context) {
         super(context);
@@ -35,6 +35,7 @@ public class CellTextView extends androidx.appcompat.widget.AppCompatTextView {
     @SuppressLint("RestrictedApi")
     public void setup() {
         this.setMaxLines(1);
+        this.setPadding(5, 5, 5, 5);
         this.setTextSize(24);
         this.setGravity(Gravity.CENTER);
         this.setBackgroundColor(Color.LTGRAY);

@@ -29,8 +29,8 @@ public class ScoreHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE +
                 " (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                SCORE_COL + "INTEGER, " +
-                PLAYER_COL + "TEXT" +
+                SCORE_COL + " INTEGER, " +
+                PLAYER_COL + " TEXT" +
                 ");");
     }
 
@@ -47,13 +47,14 @@ public class ScoreHelper extends SQLiteOpenHelper {
             if (this.readableDB == null)
                 this.readableDB = getReadableDatabase();
             cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE + ";", null);
-            cursor.moveToFirst();
-            do {
-                Score score = new Score();
-                score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
-                score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
-                scores.add(score);
-            } while (cursor.moveToNext());
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Score score = new Score();
+                    score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
+                    score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
+                    scores.add(score);
+                } while (cursor.moveToNext());
+            }
         } catch (Exception e) {
             Log.e(TAG, "getAll: ", e);
         } finally {
@@ -69,10 +70,11 @@ public class ScoreHelper extends SQLiteOpenHelper {
             if (this.readableDB == null)
                 this.readableDB = getReadableDatabase();
             cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE +
-                    "WHERE id = " + id + ";", null);
-            cursor.moveToFirst();
-            score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
-            score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
+                    " WHERE id = " + id + ";", null);
+            if (cursor != null && cursor.moveToFirst()) {
+                score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
+                score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
+            }
         } catch (Exception e) {
             Log.e(TAG, "get: ", e);
         } finally {

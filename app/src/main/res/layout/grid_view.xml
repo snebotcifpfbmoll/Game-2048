@@ -12,6 +12,7 @@
     <com.serafinebot.dint.game_2048.view.CellTextView
         android:layout_width="@dimen/min_size"
         android:layout_height="@dimen/min_size"
+        android:text="64"
         android:layout_margin="@dimen/cell_margin" />
 
     <com.serafinebot.dint.game_2048.view.CellTextView
