@@ -9,227 +9,35 @@
     android:orientation="horizontal"
     android:rowCount="4">
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 
-    <TextView
-        style="@style/rounded_corner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_margin="5sp"
-        android:backgroundTint="@color/game_color_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:padding="10sp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <TextView style="@style/grid_cell" />
 </com.serafinebot.dint.game_2048.view.SquareGridLayout>

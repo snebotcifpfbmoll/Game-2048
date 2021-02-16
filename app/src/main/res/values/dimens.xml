@@ -7,4 +7,6 @@
     <dimen name="counter_size">90sp</dimen>
     <dimen name="score_text_size">34sp</dimen>
     <dimen name="title_text_size">24sp</dimen>
+    <dimen name="cell_max_text_size">30sp</dimen>
+    <dimen name="cell_min_text_size">15sp</dimen>
 </resources>

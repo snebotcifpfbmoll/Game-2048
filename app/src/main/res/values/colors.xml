@@ -12,6 +12,7 @@
     <color name="text_color">#eeeeee</color>
     <color name="game_color">#e17055</color>
     <color name="game_color_light">#fab1a0</color>
+    <color name="game_color_pale">#fa9f90</color>
     <color name="game_color_dark">#b45944</color>
     <color name="game_color_background">#f6d4cc</color>
 </resources>

@@ -29,6 +29,7 @@
     </style>
 
     <style name="counter_number">
+        <item name="android:autoSizeTextType">uniform</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -109,6 +110,22 @@
     <style name="game_title">
         <item name="android:textColor">@color/game_color_dark</item>
         <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="grid_cell" parent="rounded_corner">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">5sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/cell_max_text_size</item>
+        <item name="android:autoSizeMinTextSize">@dimen/cell_min_text_size</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:backgroundTint">@color/game_color_pale</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">10sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

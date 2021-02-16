@@ -44,6 +44,7 @@
                 android:text="@string/score" />
 
             <TextView
+                android:id="@+id/score_number"
                 style="@style/counter_number"
                 android:text="@string/initial_score" />
         </LinearLayout>
@@ -60,6 +61,7 @@
 
             <TextView
                 style="@style/counter_number"
+                android:id="@+id/best_number"
                 android:text="@string/initial_score" />
         </LinearLayout>
 
@@ -70,6 +72,7 @@
             android:layout_marginVertical="20sp"
             android:foreground="@drawable/back_arrow_white"
             android:foregroundGravity="center"
+            android:onClick="undoPressed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/score_counter"
             app:layout_constraintRight_toRightOf="@id/score_counter"
@@ -80,8 +83,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20sp"
-            android:foregroundGravity="center"
             android:foreground="@drawable/restart_arrow_white"
+            android:foregroundGravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/best_counter"
             app:layout_constraintRight_toRightOf="@id/best_counter"
@@ -90,6 +93,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
+        android:id="@+id/game_grid"
         layout="@layout/game_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
