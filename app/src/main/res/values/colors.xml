@@ -10,6 +10,8 @@
     <color name="button_color">#66b2b2</color>
     <color name="app_color">#008080</color>
     <color name="text_color">#eeeeee</color>
-    <color name="score_color">#fab1a0</color>
-    <color name="score_background">#e17055</color>
+    <color name="game_color">#e17055</color>
+    <color name="game_color_light">#fab1a0</color>
+    <color name="game_color_dark">#b45944</color>
+    <color name="game_color_background">#f6d4cc</color>
 </resources>
