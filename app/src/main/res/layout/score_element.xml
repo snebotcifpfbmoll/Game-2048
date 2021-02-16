@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/game_color_background"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
             android:layout_toEndOf="@id/score_title"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            tools:ignore="RelativeOverlap" />
 
         <TextView
             android:id="@+id/player_title"

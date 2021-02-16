@@ -16,10 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresViewHolder> {
+    private Context context;
     private LayoutInflater inflater;
     private List<Score> scores = new ArrayList<>();
 
     public ScoresAdapter(Context context, List<Score> scores) {
+        this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.scores = scores;
     }
@@ -43,7 +45,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
         return this.scores.size();
     }
 
-    class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private static final String TAG = "ScoresViewHolder";
         private ScoresAdapter adapter;
         public TextView score_result;
