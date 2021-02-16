@@ -20,8 +20,9 @@ public class ScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scores_layout);
 
-        for (int i = 0; i < 30; i++)
-            this.scores.add(new Score());
+        for (int i = 0; i < 30; i++) {
+            this.scores.add(new Score(i, "test " + i));
+        }
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         ScoresAdapter adapter = new ScoresAdapter(this, this.scores);
         recyclerView.setAdapter(adapter);

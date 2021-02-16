@@ -33,8 +33,9 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
 
     @Override
     public void onBindViewHolder(@NonNull ScoresViewHolder holder, int position) {
-        String text = this.scores.get(position).toString();
-        holder.textView.setText(text);
+        Score score = this.scores.get(position);
+        holder.score_result.setText(String.valueOf(score.score));
+        holder.player_result.setText(String.valueOf(score.player));
     }
 
     @Override
@@ -45,11 +46,13 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
     class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private static final String TAG = "ScoresViewHolder";
         private ScoresAdapter adapter;
-        public TextView textView;
+        public TextView score_result;
+        public TextView player_result;
 
         public ScoresViewHolder(@NonNull View itemView, ScoresAdapter adapter) {
             super(itemView);
-            this.textView = itemView.findViewById(R.id.test);
+            this.score_result = itemView.findViewById(R.id.score_result);
+            this.player_result = itemView.findViewById(R.id.player_result);
             this.adapter = adapter;
             itemView.setOnClickListener(this);
         }

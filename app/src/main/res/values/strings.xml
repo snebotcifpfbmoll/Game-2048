@@ -15,4 +15,8 @@
     <string name="back">Back</string>
     <string name="play">Play</string>
     <string name="scores">Scores</string>
+    <string name="this_is_a_test">This is a test</string>
+    <string name="score_title">Score:</string>
+    <string name="player_title">Player:</string>
+    <string name="next_arrow">Next arrow</string>
 </resources>
