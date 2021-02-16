@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9e2dd">
+    android:background="#f9e2dd"
+    android:orientation="vertical"
+    android:padding="20sp"
+    tools:context=".GameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_panel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:id="@+id/title"
@@ -64,4 +72,12 @@
             app:layout_constraintTop_toBottomOf="@id/score_counter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+    <include
+        layout="@layout/game_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_panel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
