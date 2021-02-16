@@ -3,4 +3,8 @@
     <dimen name="item_margin">5sp</dimen>
     <dimen name="min_size">100sp</dimen>
     <dimen name="cell_margin">2sp</dimen>
+    <dimen name="corner_radius">10sp</dimen>
+    <dimen name="counter_size">90sp</dimen>
+    <dimen name="score_text_size">34sp</dimen>
+    <dimen name="title_text_size">24sp</dimen>
 </resources>

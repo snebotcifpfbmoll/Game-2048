@@ -9,7 +9,7 @@
         <item name="android:paddingVertical">5sp</item>
     </style>
 
-    <style name="counter" parent="widget.view">
+    <style name="counter2" parent="widget.view">
         <item name="android:fontFamily">monospace</item>
         <item name="android:width">150sp</item>
         <item name="android:textColor">@color/counter_text</item>
