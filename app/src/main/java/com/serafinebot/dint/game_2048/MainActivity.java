@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void scores(@NonNull View view) {
-        //Intent intent = new Intent(this, GameActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ScoresActivity.class);
+        startActivity(intent);
     }
 }
