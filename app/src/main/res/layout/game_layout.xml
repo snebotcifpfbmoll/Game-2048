@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9e2dd"
+    android:layout_gravity="center"
+    android:background="@color/game_color_background"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="20sp"
     tools:context=".GameActivity">
@@ -15,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40sp">
 
         <TextView
             android:id="@+id/title"
@@ -65,11 +68,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20sp"
-            android:text="@string/new_game"
+            android:foreground="@drawable/back_arrow_white"
+            android:foregroundGravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/score_counter"
-            app:layout_constraintRight_toRightOf="@id/best_counter"
+            app:layout_constraintRight_toRightOf="@id/score_counter"
             app:layout_constraintTop_toBottomOf="@id/score_counter" />
+
+        <Button
+            style="@style/rounded_corner.button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20sp"
+            android:foregroundGravity="center"
+            android:foreground="@drawable/restart_arrow_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/best_counter"
+            app:layout_constraintRight_toRightOf="@id/best_counter"
+            app:layout_constraintTop_toBottomOf="@id/best_counter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
