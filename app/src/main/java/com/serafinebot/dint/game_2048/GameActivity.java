@@ -23,6 +23,8 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
     private static final int GRID_HEIGHT = 4;
     private static final int GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
     private static final int START_PERCENT_SMALL = 70;
+    private static final String GRID_KEY = "grid";
+    private static final String PREVIOUS_KEY = "previous";
     private int[] grid = new int[GRID_SIZE];
     private final int[] sum = new int[GRID_SIZE];
     private int[] previous = null;
@@ -48,6 +50,28 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
                 this.cells.add(cell);
             }
         }
+        if (savedInstanceState != null) {
+            this.grid = savedInstanceState.getIntArray(GRID_KEY);
+            this.previous = savedInstanceState.getIntArray(PREVIOUS_KEY);
+        } else {
+            addRandom();
+        }
+        updateGrid();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putIntArray(GRID_KEY, this.grid);
+        outState.putIntArray(PREVIOUS_KEY, this.previous);
+        super.onSaveInstanceState(outState);
+    }
+
+    public void resetPressed(@NonNull View view) {
+        for (int i = 0; i < this.grid.length; i++) {
+            this.grid[i] = 0;
+            this.sum[i] = 0;
+        }
+        this.previous = null;
         addRandom();
         updateGrid();
     }
