@@ -3,7 +3,6 @@ package com.serafinebot.dint.game_2048.scores;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +31,6 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
 
     @Override
     public void recyclerViewClicked(View view, int position) {
-        Toast.makeText(this, "pos: " + position, Toast.LENGTH_LONG).show();
         Score score = this.adapter.getScore(position);
         Intent intent = new Intent(this, ScoresDetailActivity.class);
         intent.putExtra(ScoresDetailActivity.ID_KEY, score.id);

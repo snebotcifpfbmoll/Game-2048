@@ -4,6 +4,7 @@ public class Score {
     public long id;
     public int score;
     public String player;
+    public String date;
 
     public Score() {
     }

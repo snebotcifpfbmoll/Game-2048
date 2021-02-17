@@ -9,5 +9,5 @@
     <dimen name="title_text_size">24sp</dimen>
     <dimen name="cell_max_text_size">30sp</dimen>
     <dimen name="cell_min_text_size">15sp</dimen>
-    <dimen name="recycler_view_padding_horizontal">20sp</dimen>
+    <dimen name="padding_horizontal">20sp</dimen>
 </resources>

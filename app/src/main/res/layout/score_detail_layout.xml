@@ -1,12 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/game_color"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_horizontal">
 
     <TextView
-        android:id="@+id/details"
-        style="@style/title"
+        android:id="@+id/detail_title"
+        style="@style/game_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/score_details"
+        android:textColor="@android:color/white" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10sp"
+        android:background="@color/text_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detail_score_title"
+            style="@style/counter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="@string/score" />
+
+        <TextView
+            android:id="@+id/detail_score"
+            style="@style/counter_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="@string/initial_score"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detail_player_title"
+            style="@style/counter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="@string/player" />
+
+        <TextView
+            android:id="@+id/detail_player"
+            style="@style/counter_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="@string/snebot"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detail_date_title"
+            style="@style/counter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/detail_date"
+            style="@style/counter_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
+            android:gravity="center"
+            android:text="adsfaslfj ñlkasjfdkasjf ñafjlkasjfa"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
 </LinearLayout>

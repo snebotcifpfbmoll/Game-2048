@@ -7,17 +7,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ScoreHelper extends SQLiteOpenHelper {
     private static final String TAG = "UserHelper";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String DB_NAME = "game-2048";
     private static final String TABLE = "score";
     private static final String ID_COL = "id";
     private static final String SCORE_COL = "score";
     private static final String PLAYER_COL = "player";
+    private static final String DATE_COL = "date";
 
     private SQLiteDatabase readableDB;
     private SQLiteDatabase writableDB;
@@ -31,7 +36,8 @@ public class ScoreHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE +
                 " (" + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SCORE_COL + " INTEGER, " +
-                PLAYER_COL + " TEXT" +
+                PLAYER_COL + " TEXT, " +
+                DATE_COL + " TEXT" +
                 ");");
     }
 
@@ -39,6 +45,15 @@ public class ScoreHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE);
         onCreate(db);
+    }
+
+    private Score getScore(Cursor cursor) {
+        Score score = new Score();
+        score.id = cursor.getLong(cursor.getColumnIndex("id"));
+        score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
+        score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
+        score.date = cursor.getString(cursor.getColumnIndex(DATE_COL));
+        return score;
     }
 
     public List<Score> getAll() {
@@ -50,11 +65,7 @@ public class ScoreHelper extends SQLiteOpenHelper {
             cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE + ";", null);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    Score score = new Score();
-                    score.id = cursor.getLong(cursor.getColumnIndex("id"));
-                    score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
-                    score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
-                    scores.add(score);
+                    scores.add(getScore(cursor));
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -73,11 +84,8 @@ public class ScoreHelper extends SQLiteOpenHelper {
                 this.readableDB = getReadableDatabase();
             cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE +
                     " WHERE id = " + id + ";", null);
-            if (cursor != null && cursor.moveToFirst()) {
-                score.id = cursor.getLong(cursor.getColumnIndex(ID_COL));
-                score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
-                score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
-            }
+            if (cursor != null && cursor.moveToFirst())
+                score = getScore(cursor);
         } catch (Exception e) {
             Log.e(TAG, "get: ", e);
         } finally {
@@ -91,6 +99,10 @@ public class ScoreHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(SCORE_COL, score.score);
         values.put(PLAYER_COL, score.player);
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        values.put(DATE_COL, formattedDate);
         try {
             if (this.writableDB == null)
                 this.writableDB = getWritableDatabase();

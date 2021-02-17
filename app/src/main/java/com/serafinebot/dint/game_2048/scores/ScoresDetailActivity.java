@@ -16,16 +16,24 @@ public class ScoresDetailActivity extends AppCompatActivity {
     public static final String ID_KEY = "id";
 
     private final ScoreHelper scoreHelper = new ScoreHelper(this);
-    private TextView textView;
+    private TextView scoreView;
+    private TextView playerView;
+    private TextView dateView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_detail_layout);
 
+        this.scoreView = findViewById(R.id.detail_score);
+        this.playerView = findViewById(R.id.detail_player);
+        this.dateView = findViewById(R.id.detail_date);
+
         long id = Objects.requireNonNull(getIntent().getExtras()).getLong(ID_KEY);
         Score score = this.scoreHelper.get(id);
-        this.textView = findViewById(R.id.details);
-        this.textView.setText(String.format("id: %d\nscore: %d\nplayer: %s", score.id, score.score, score.player));
+
+        this.scoreView.setText(String.valueOf(score.score));
+        this.playerView.setText(score.player);
+        this.dateView.setText(score.date);
     }
 }
