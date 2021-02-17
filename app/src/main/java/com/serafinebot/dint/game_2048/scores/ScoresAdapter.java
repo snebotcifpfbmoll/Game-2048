@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.serafinebot.dint.game_2048.R;
@@ -48,8 +49,17 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
 
     public void delete(int position) {
         if (position >= this.scores.size()) return;
-        this.scores.remove(position);
-        notifyItemRemoved(position);
+        new AlertDialog.Builder(this.context)
+                .setTitle("Delete Score")
+                .setMessage("Are you sure you want to delete this score?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    this.scores.remove(position);
+                    notifyItemRemoved(position);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    notifyItemChanged(position);
+                })
+                .show();
     }
 
     static class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
