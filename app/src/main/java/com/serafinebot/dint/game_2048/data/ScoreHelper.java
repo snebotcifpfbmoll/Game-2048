@@ -15,6 +15,7 @@ public class ScoreHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "game-2048";
     private static final String TABLE = "score";
+    private static final String ID_COL = "id";
     private static final String SCORE_COL = "score";
     private static final String PLAYER_COL = "player";
 
@@ -28,7 +29,7 @@ public class ScoreHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE +
-                " (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " (" + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SCORE_COL + " INTEGER, " +
                 PLAYER_COL + " TEXT" +
                 ");");
@@ -50,6 +51,7 @@ public class ScoreHelper extends SQLiteOpenHelper {
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     Score score = new Score();
+                    score.id = cursor.getLong(cursor.getColumnIndex("id"));
                     score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
                     score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
                     scores.add(score);
@@ -72,6 +74,7 @@ public class ScoreHelper extends SQLiteOpenHelper {
             cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE +
                     " WHERE id = " + id + ";", null);
             if (cursor != null && cursor.moveToFirst()) {
+                score.id = cursor.getLong(cursor.getColumnIndex(ID_COL));
                 score.score = cursor.getInt(cursor.getColumnIndex(SCORE_COL));
                 score.player = cursor.getString(cursor.getColumnIndex(PLAYER_COL));
             }
