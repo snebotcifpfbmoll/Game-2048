@@ -1,7 +1,6 @@
 package com.serafinebot.dint.game_2048.scores;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
     private Context context;
     private LayoutInflater inflater;
     private List<Score> scores;
+    private RecyclerViewClickListener listener;
 
     public Context getContext() {
         return context;
@@ -29,17 +29,31 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
         this.context = context;
     }
 
-    public ScoresAdapter(Context context, List<Score> scores) {
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public ScoresAdapter(Context context, List<Score> scores, RecyclerViewClickListener listener) {
+        this.listener = listener;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.scores = scores;
+    }
+
+    public Score getScore(int position) {
+        if (this.scores == null || position >= this.scores.size()) return null;
+        return this.scores.get(position);
     }
 
     @NonNull
     @Override
     public ScoresViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = this.inflater.inflate(R.layout.score_element, parent, false);
-        return new ScoresViewHolder(view, this);
+        return new ScoresViewHolder(view, this, this.listener);
     }
 
     @Override
@@ -71,12 +85,14 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
 
     static class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private static final String TAG = "ScoresViewHolder";
+        private RecyclerViewClickListener listener;
         private ScoresAdapter adapter;
         public TextView score_result;
         public TextView player_result;
 
-        public ScoresViewHolder(@NonNull View itemView, ScoresAdapter adapter) {
+        public ScoresViewHolder(@NonNull View itemView, ScoresAdapter adapter, RecyclerViewClickListener listener) {
             super(itemView);
+            this.listener = listener;
             this.score_result = itemView.findViewById(R.id.score_result);
             this.player_result = itemView.findViewById(R.id.player_result);
             this.adapter = adapter;
@@ -85,7 +101,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
 
         @Override
         public void onClick(View v) {
-            Log.i(TAG, "onClick: ");
+            this.listener.recyclerViewClicked(v, getAdapterPosition());
         }
     }
 }
