@@ -14,13 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.serafinebot.dint.game_2048.R;
 import com.serafinebot.dint.game_2048.data.Score;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresViewHolder> {
     private Context context;
     private LayoutInflater inflater;
-    private List<Score> scores = new ArrayList<>();
+    private List<Score> scores;
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     public ScoresAdapter(Context context, List<Score> scores) {
         this.context = context;

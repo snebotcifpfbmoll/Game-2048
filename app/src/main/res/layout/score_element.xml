@@ -1,63 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/rounded_corner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/game_color_background"
+    android:layout_marginVertical="5sp"
+    android:backgroundTint="@color/game_color"
     android:orientation="vertical">
 
-    <RelativeLayout
-        style="@style/rounded_corner"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/score_title"
+        style="@style/counter_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10sp"
-        android:layout_marginVertical="5sp"
-        android:backgroundTint="@color/game_color"
-        android:orientation="vertical"
-        android:padding="10sp">
+        android:text="@string/score_title" />
 
-        <TextView
-            android:id="@+id/score_title"
-            style="@style/counter_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/score_title" />
+    <TextView
+        android:id="@+id/score_result"
+        style="@style/counter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/score_title"
+        android:textColor="@color/text_color"
+        tools:ignore="RelativeOverlap" />
 
-        <TextView
-            android:id="@+id/score_result"
-            style="@style/counter_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:layout_toEndOf="@id/score_title"
-            android:textColor="@color/text_color"
-            tools:ignore="RelativeOverlap" />
+    <TextView
+        android:id="@+id/player_title"
+        style="@style/counter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/score_result"
+        android:text="@string/player_title" />
 
-        <TextView
-            android:id="@+id/player_title"
-            style="@style/counter_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/score_result"
-            android:text="@string/player_title" />
+    <TextView
+        android:id="@+id/player_result"
+        style="@style/counter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/score_result"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/player_title"
+        android:textColor="@color/text_color" />
 
-        <TextView
-            android:id="@+id/player_result"
-            style="@style/counter_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/score_result"
-            android:layout_marginStart="10sp"
-            android:layout_toEndOf="@id/player_title"
-            android:textColor="@color/text_color" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/next_arrow"
-            android:src="@drawable/next_arrow_white" />
-    </RelativeLayout>
-
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/next_arrow"
+        android:src="@drawable/next_arrow_white" />
+</RelativeLayout>
