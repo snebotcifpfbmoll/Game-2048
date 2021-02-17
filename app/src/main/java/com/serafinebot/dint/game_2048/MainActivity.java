@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.serafinebot.dint.game_2048.scores.ScoresActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

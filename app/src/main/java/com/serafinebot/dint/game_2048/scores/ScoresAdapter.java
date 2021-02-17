@@ -1,4 +1,4 @@
-package com.serafinebot.dint.game_2048;
+package com.serafinebot.dint.game_2048.scores;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.serafinebot.dint.game_2048.R;
 import com.serafinebot.dint.game_2048.data.Score;
 
 import java.util.ArrayList;
@@ -43,6 +44,12 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
     @Override
     public int getItemCount() {
         return this.scores.size();
+    }
+
+    public void delete(int position) {
+        if (position >= this.scores.size()) return;
+        this.scores.remove(position);
+        notifyItemRemoved(position);
     }
 
     static class ScoresViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

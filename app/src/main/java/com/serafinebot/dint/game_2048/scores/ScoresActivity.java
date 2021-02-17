@@ -1,12 +1,14 @@
-package com.serafinebot.dint.game_2048;
+package com.serafinebot.dint.game_2048.scores;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.serafinebot.dint.game_2048.R;
 import com.serafinebot.dint.game_2048.data.Score;
 
 import java.util.ArrayList;
@@ -27,5 +29,8 @@ public class ScoresActivity extends AppCompatActivity {
         ScoresAdapter adapter = new ScoresAdapter(this, this.scores);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ScoresDeleteCallback callback = new ScoresDeleteCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
     }
 }
