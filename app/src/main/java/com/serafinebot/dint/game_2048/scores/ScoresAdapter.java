@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -89,7 +90,14 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
                 .setTitle("Delete Score")
                 .setMessage("Are you sure you want to delete this score?")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    this.scores.remove(position);
+                    List<Score> scores = this.scoreHelper.getAll();
+                    if (scores == null || position >= scores.size()) return;
+                    Score score = scores.get(position);
+                    if (this.scoreHelper.delete(score.id)) {
+                        this.scores.remove(position);
+                    } else {
+                        Toast.makeText(this.context, "Failed to delete score", Toast.LENGTH_LONG).show();
+                    }
                     notifyItemRemoved(position);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
