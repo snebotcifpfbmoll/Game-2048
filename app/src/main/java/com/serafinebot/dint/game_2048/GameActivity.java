@@ -46,6 +46,7 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
 
         this.score_number = findViewById(R.id.score_number);
         this.best_number = findViewById(R.id.best_number);
+        this.best_number.setText(String.valueOf(this.scoreHelper.getHighest().score));
 
         GridLayout gameLayout = findViewById(R.id.game_grid);
         new OnSwipeListener(this, this, gameLayout);

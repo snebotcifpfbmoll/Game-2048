@@ -94,6 +94,24 @@ public class ScoreHelper extends SQLiteOpenHelper {
         return score;
     }
 
+    public Score getHighest() {
+        Score score = null;
+        Cursor cursor = null;
+        try {
+            if (this.readableDB == null)
+                this.readableDB = getReadableDatabase();
+            cursor = this.readableDB.rawQuery("SELECT * FROM " + TABLE +
+                    " ORDER BY " + SCORE_COL + " DESC LIMIT 1;", null);
+            if (cursor != null && cursor.moveToFirst())
+                score = getScore(cursor);
+        } catch (Exception e) {
+            Log.e(TAG, "get: ", e);
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+        return score;
+    }
+
     public long add(Score score) {
         long newId = 0;
         ContentValues values = new ContentValues();
