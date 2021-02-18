@@ -1,15 +1,20 @@
 package com.serafinebot.dint.game_2048;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.serafinebot.dint.game_2048.data.Score;
+import com.serafinebot.dint.game_2048.data.ScoreHelper;
 import com.serafinebot.dint.game_2048.touch.OnSwipeListener;
 import com.serafinebot.dint.game_2048.touch.OnSwipeListenerDelegate;
 import com.serafinebot.dint.game_2048.touch.SwipeDirection;
@@ -29,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
     private final int[] sum = new int[GRID_SIZE];
     private int[] previous = null;
 
+    private final ScoreHelper scoreHelper = new ScoreHelper(this);
     private final List<TextView> cells = new ArrayList<>();
     private TextView score_number = null;
     private TextView best_number = null;
@@ -64,6 +70,26 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
         outState.putIntArray(GRID_KEY, this.grid);
         outState.putIntArray(PREVIOUS_KEY, this.previous);
         super.onSaveInstanceState(outState);
+    }
+
+    public void savePressed(@NonNull View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter player name:");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            Score score = new Score();
+            score.score = getScore();
+            score.player = input.getText().toString();
+            String message = this.scoreHelper.add(score) < 0 ? "Could not save score" : "Score saved";
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        });
+        builder.setNegativeButton("Cancel", ((dialog, which) -> {
+            dialog.cancel();
+        }));
+        builder.show();
     }
 
     public void resetPressed(@NonNull View view) {
@@ -106,8 +132,13 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
         }
     }
 
+    public int getScore() {
+        int score = 0;
+        for (int value : this.grid) score += value;
+        return score;
+    }
+
     public void updateGrid() {
-        int sum = 0;
         for (int i = 0; i < this.cells.size(); i++) {
             TextView cell = this.cells.get(i);
             int val = this.grid[i];
@@ -119,9 +150,8 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
             }
             cell.setText(newText);
             cell.setBackgroundTintList(getColorStateList(color));
-            sum += val;
         }
-        this.score_number.setText(String.valueOf(sum));
+        this.score_number.setText(String.valueOf(getScore()));
     }
 
     public boolean inBounds(int val, int x, int y) {

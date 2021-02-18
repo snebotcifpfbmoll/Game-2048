@@ -15,7 +15,6 @@ import com.serafinebot.dint.game_2048.R;
 import com.serafinebot.dint.game_2048.data.Score;
 import com.serafinebot.dint.game_2048.data.ScoreHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresViewHolder> {
@@ -46,18 +45,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoresView
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.scoreHelper = new ScoreHelper(this.context);
-
-        List<Score> scores = new ArrayList<>();
-        for (int i = 0; i < 30; i++)
-            scores.add(new Score(i, "test " + i));
-
         this.scores = scoreHelper.getAll();
-        if (this.scores.size() == 0) {
-            scores.forEach(score -> {
-                scoreHelper.add(score);
-            });
-            this.scores = scoreHelper.getAll();
-        }
     }
 
     public Score getScore(int position) {
