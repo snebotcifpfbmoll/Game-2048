@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20sp"
             android:layout_marginVertical="20sp"
-            android:backgroundTint="#00b894"
+            android:backgroundTint="@color/game_color_green"
             android:foreground="@drawable/save_white"
             android:foregroundGravity="center"
             android:onClick="savePressed"
@@ -96,6 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/score_counter" />
 
         <Button
+            android:id="@+id/reset_button"
             style="@style/rounded_corner.button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
