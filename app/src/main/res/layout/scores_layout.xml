@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/game_color_background"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/scores_title"
+        style="@style/game_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_default"
+        android:paddingHorizontal="@dimen/margin_default"
+        android:text="@string/scores" />
+
+    <View
+        android:id="@+id/scores_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separator_height"
+        android:layout_below="@id/scores_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:background="@color/game_color" />
+
+    <EditText
+        android:id="@+id/search_view"
+        style="@style/rounded_corner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scores_separator"
+        android:layout_alignParentStart="true"
+        android:layout_marginVertical="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_toStartOf="@id/search_button"
+        android:backgroundTint="#dfe6e9"
+        android:hint="@string/search"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:padding="@dimen/margin_small"
+        android:paddingHorizontal="10sp" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scores_separator"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/search_white"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/game_color"
+        android:includeFontPadding="false" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/padding_horizontal" />
+        android:layout_below="@id/search_view"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="@dimen/margin_default" />
 
-</LinearLayout>
+</RelativeLayout>

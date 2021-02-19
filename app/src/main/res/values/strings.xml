@@ -24,4 +24,5 @@
     <string name="score_details">Score details</string>
     <string name="date">DATE</string>
     <string name="date_default">4/20</string>
+    <string name="search">Search</string>
 </resources>

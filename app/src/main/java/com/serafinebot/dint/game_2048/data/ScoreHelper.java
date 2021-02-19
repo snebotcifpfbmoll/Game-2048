@@ -161,4 +161,27 @@ public class ScoreHelper extends SQLiteOpenHelper {
         }
         return rows > 0;
     }
+
+    public List<Score> searchByPlayer(String search, ScoreOrderBy orderBy) {
+        List<Score> scores = new ArrayList<>();
+        String[] columns = new String[]{PLAYER_COL};
+        String searchString = "%" + search + "%";
+        String where = PLAYER_COL + " LIKE ?";
+        String[] whereArgs = new String[]{searchString};
+        String order = " ORDER BY " + orderBy.name();
+        Cursor cursor = null;
+        try {
+            if (this.readableDB == null)
+                this.readableDB = getReadableDatabase();
+            cursor = this.readableDB.query(TABLE, columns, where, whereArgs, null, null, order);
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    scores.add(getScore(cursor));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "search: ", e);
+        }
+        return scores;
+    }
 }
