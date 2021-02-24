@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".scores.ScoresActivity">
 
     <TextView
         android:id="@+id/scores_title"
@@ -54,7 +56,8 @@
         android:foreground="@drawable/search_white"
         android:foregroundGravity="center"
         android:foregroundTint="@color/game_color"
-        android:includeFontPadding="false" />
+        android:includeFontPadding="false"
+        android:onClick="searchPressed" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
