@@ -2,7 +2,6 @@ package com.serafinebot.dint.game_2048.scores;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -51,6 +50,9 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
         Intent intent = new Intent(this, ScoresDetailActivity.class);
         intent.putExtra(ScoresDetailActivity.ID_KEY, score.id);
         startActivity(intent);
+    }
+
+    public void scoreSearchConditionPressed(@NonNull View view) {
     }
 
     public void searchPressed(@NonNull View view) {

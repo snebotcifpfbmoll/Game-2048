@@ -26,4 +26,5 @@
     <string name="date_default">4/20</string>
     <string name="player_search">Player</string>
     <string name="score_search">Score</string>
+    <string name="score_search_term_initial">=</string>
 </resources>
