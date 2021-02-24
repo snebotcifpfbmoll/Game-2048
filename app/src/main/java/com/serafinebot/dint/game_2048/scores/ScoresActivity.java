@@ -2,6 +2,7 @@ package com.serafinebot.dint.game_2048.scores;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -20,16 +21,19 @@ import com.serafinebot.dint.game_2048.data.ScoreOrderBy;
 import java.util.List;
 
 public class ScoresActivity extends AppCompatActivity implements RecyclerViewClickListener {
+    private static final String TAG = "ScoresActivity";
     private ScoreHelper scoreHelper;
     private ScoresAdapter adapter;
-    private EditText searchView;
+    private EditText searchSearch;
+    private EditText scoreSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scores_layout);
 
-        this.searchView = findViewById(R.id.search_view);
+        this.searchSearch = findViewById(R.id.player_search);
+        this.scoreSearch = findViewById(R.id.score_search);
         this.scoreHelper = new ScoreHelper(this);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -50,8 +54,13 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
     }
 
     public void searchPressed(@NonNull View view) {
-        String search = this.searchView.getText().toString();
-        List<Score> scores = this.scoreHelper.searchByPlayer(search, ScoreOrderBy.DESC);
+        String search = this.searchSearch.getText().toString();
+        Integer score = null;
+        try {
+            score = Integer.parseInt(this.scoreSearch.getText().toString());
+        } catch (NumberFormatException ignored) {
+        }
+        List<Score> scores = this.scoreHelper.search(search, score, ScoreOrderBy.DESC);
         this.adapter.setScores(scores);
         this.adapter.notifyDataSetChanged();
     }

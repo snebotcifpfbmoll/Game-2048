@@ -16,4 +16,5 @@
     <color name="game_color_dark">#b45944</color>
     <color name="game_color_background">#f6d4cc</color>
     <color name="game_color_green">#00b894</color>
+    <color name="grey_background">#dfe6e9</color>
 </resources>

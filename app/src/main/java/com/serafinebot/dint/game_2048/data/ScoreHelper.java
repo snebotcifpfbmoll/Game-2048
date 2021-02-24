@@ -162,18 +162,14 @@ public class ScoreHelper extends SQLiteOpenHelper {
         return rows > 0;
     }
 
-    public List<Score> searchByPlayer(String search, ScoreOrderBy orderBy) {
+    public List<Score> search(String player, Integer score, ScoreOrderBy orderBy) {
         List<Score> scores = new ArrayList<>();
-        String[] columns = new String[]{PLAYER_COL};
-        String searchString = "%*" + search + "*%";
-        String where = PLAYER_COL + " LIKE ?";
-        String[] whereArgs = new String[]{searchString};
+        String scoreSearch = score == null ? "" : String.format("and %s = %s", SCORE_COL, score);
         Cursor cursor = null;
         try {
             if (this.readableDB == null)
                 this.readableDB = getReadableDatabase();
-            //cursor = this.readableDB.query(TABLE, columns, where, whereArgs, null, null, null);
-            cursor = readableDB.rawQuery(String.format("select * from %s where %s like \"%%%s%%\"", TABLE, PLAYER_COL, search), null);
+            cursor = readableDB.rawQuery(String.format("select * from %s where %s like \"%%%s%%\" %s order by %s %s;", TABLE, PLAYER_COL, player, scoreSearch, SCORE_COL, orderBy.name()), null);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     scores.add(getScore(cursor));

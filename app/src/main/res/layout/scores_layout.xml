@@ -30,7 +30,7 @@
         android:background="@color/game_color" />
 
     <EditText
-        android:id="@+id/search_view"
+        android:id="@+id/player_search"
         style="@style/rounded_corner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,10 +39,27 @@
         android:layout_marginVertical="@dimen/margin_small"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_toStartOf="@id/search_button"
-        android:backgroundTint="#dfe6e9"
-        android:hint="@string/search"
+        android:backgroundTint="@color/grey_background"
+        android:hint="@string/player_search"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:padding="@dimen/margin_small"
+        android:paddingHorizontal="10sp" />
+
+    <EditText
+        android:id="@+id/score_search"
+        style="@style/rounded_corner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_search"
+        android:layout_alignParentStart="true"
+        android:layout_marginVertical="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_toStartOf="@id/search_button"
+        android:backgroundTint="@color/grey_background"
+        android:hint="@string/score_search"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
         android:padding="@dimen/margin_small"
         android:paddingHorizontal="10sp" />
 
@@ -51,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/scores_separator"
+        android:layout_alignBottom="@id/score_search"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:foreground="@drawable/search_white"
@@ -63,7 +81,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_view"
+        android:layout_below="@id/score_search"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
