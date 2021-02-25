@@ -170,7 +170,6 @@ public class ScoreHelper extends SQLiteOpenHelper {
             if (this.readableDB == null)
                 this.readableDB = getReadableDatabase();
             String query = String.format("select * from %s where %s like \"%%%s%%\" %s order by %s %s;", TABLE, PLAYER_COL, player, scoreSearch, SCORE_COL, orderBy.name());
-            System.out.println("Search query: " + query);
             cursor = readableDB.rawQuery(query, null);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
