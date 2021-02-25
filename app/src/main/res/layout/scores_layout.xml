@@ -63,7 +63,7 @@
         android:padding="@dimen/margin_small"
         android:paddingHorizontal="10sp" />
 
-    <Button
+    <com.serafinebot.dint.game_2048.view.ButtonCycle
         android:id="@+id/score_search_condition"
         android:layout_width="60sp"
         android:layout_height="wrap_content"

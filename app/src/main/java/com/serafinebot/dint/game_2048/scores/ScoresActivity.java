@@ -16,6 +16,7 @@ import com.serafinebot.dint.game_2048.R;
 import com.serafinebot.dint.game_2048.data.Score;
 import com.serafinebot.dint.game_2048.data.ScoreHelper;
 import com.serafinebot.dint.game_2048.data.ScoreOrderBy;
+import com.serafinebot.dint.game_2048.view.ButtonCycle;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
     private ScoresAdapter adapter;
     private EditText searchSearch;
     private EditText scoreSearch;
+    private ButtonCycle scoreSearchButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +35,12 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
 
         this.searchSearch = findViewById(R.id.player_search);
         this.scoreSearch = findViewById(R.id.score_search);
+        this.scoreSearchButton = findViewById(R.id.score_search_condition);
         this.scoreHelper = new ScoreHelper(this);
+
+        this.scoreSearchButton.addCycle("=");
+        this.scoreSearchButton.addCycle("<");
+        this.scoreSearchButton.addCycle(">");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         this.adapter = new ScoresAdapter(this, this);
@@ -53,6 +60,7 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
     }
 
     public void scoreSearchConditionPressed(@NonNull View view) {
+        this.scoreSearchButton.cycle();
     }
 
     public void searchPressed(@NonNull View view) {
@@ -62,7 +70,8 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
             score = Integer.parseInt(this.scoreSearch.getText().toString());
         } catch (NumberFormatException ignored) {
         }
-        List<Score> scores = this.scoreHelper.search(search, score, ScoreOrderBy.DESC);
+        String condition = this.scoreSearchButton.getText().toString();
+        List<Score> scores = this.scoreHelper.search(search, score, condition, ScoreOrderBy.DESC);
         this.adapter.setScores(scores);
         this.adapter.notifyDataSetChanged();
     }
