@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/game_color"
     android:orientation="vertical"
-    android:padding="@dimen/margin_default">
+    android:padding="@dimen/margin_default"
+    tools:context=".scores.ScoresDetailActivity">
 
-    <TextView
-        android:id="@+id/detail_title"
-        style="@style/game_title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/score_details"
-        android:textColor="@android:color/white" />
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/separator_height"
-        android:layout_marginBottom="@dimen/margin_default"
-        android:background="@color/text_color" />
+        <TextView
+            android:id="@+id/detail_title"
+            style="@style/game_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@id/detail_edit_button"
+            android:text="@string/score_details"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/detail_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/detail_separator"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:onClick="editButtonPressed"
+            android:text="@string/detail_edit"
+            android:textAllCaps="true"
+            android:textColor="@color/game_color_light"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/detail_separator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_height"
+            android:layout_below="@id/detail_title"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:background="@color/text_color" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -44,7 +69,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -56,18 +81,24 @@
             android:gravity="center"
             android:text="@string/player" />
 
-        <TextView
+        <EditText
             android:id="@+id/detail_player"
             style="@style/counter_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_small"
+            android:autofillHints=""
+            android:background="@null"
+            android:cursorVisible="false"
+            android:enabled="false"
             android:gravity="center"
-            android:textColor="@color/text_color" />
+            android:inputType="none"
+            android:textColor="@color/text_color"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView

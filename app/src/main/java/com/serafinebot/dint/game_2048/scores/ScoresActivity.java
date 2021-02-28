@@ -52,6 +52,12 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        searchPressed(null);
+    }
+
+    @Override
     public void recyclerViewClicked(View view, int position) {
         Score score = this.adapter.getScore(position);
         Intent intent = new Intent(this, ScoresDetailActivity.class);
@@ -63,7 +69,7 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
         this.scoreSearchButton.cycle();
     }
 
-    public void searchPressed(@NonNull View view) {
+    public void searchPressed(View view) {
         String search = this.searchSearch.getText().toString();
         Integer score = null;
         try {
@@ -71,6 +77,11 @@ public class ScoresActivity extends AppCompatActivity implements RecyclerViewCli
         } catch (NumberFormatException ignored) {
         }
         String condition = this.scoreSearchButton.getText().toString();
+        if (condition.equals(">")) {
+            condition = "<";
+        } else if (condition.equals("<")) {
+            condition = ">";
+        }
         List<Score> scores = this.scoreHelper.search(search, score, condition, ScoreOrderBy.DESC);
         this.adapter.setScores(scores);
         this.adapter.notifyDataSetChanged();

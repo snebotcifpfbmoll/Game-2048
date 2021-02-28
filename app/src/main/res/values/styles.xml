@@ -47,72 +47,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- OLD STUFF -->
-
-    <style name="banner">
-        <item name="android:fontFamily">monospace</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">35sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:background">@color/app_color</item>
-        <item name="android:padding">10sp</item>
-    </style>
-
-    <style name="widget">
-        <item name="android:background">@drawable/widget_bg</item>
-    </style>
-
-    <style name="widget.view" parent="widget">
-        <item name="android:fontFamily">monospace</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="edit_text" parent="widget.view">
-        <item name="android:paddingStart">20sp</item>
-        <item name="android:gravity">left</item>
-        <item name="android:textColor">@color/counter_text</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="title" parent="widget.view">
-        <item name="android:textColor">@color/counter_text</item>
-        <item name="android:textSize">35sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="counter2" parent="widget.view">
-        <item name="android:fontFamily">monospace</item>
-        <item name="android:width">150sp</item>
-        <item name="android:textColor">@color/counter_text</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="maxHeight">10sp</item>
-    </style>
-
-    <style name="undo" parent="widget.view">
-        <item name="android:minWidth">100sp</item>
-        <item name="android:textSize">35sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="backgroundTint">@color/undo_disabled</item>
-    </style>
-
-    <style name="button" parent="title">
-        <item name="android:backgroundTint">@color/button_color</item>
-        <item name="android:padding">10sp</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
-    <style name="game_title">
-        <item name="android:textColor">@color/game_color_dark</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="grid_cell" parent="rounded_corner">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
@@ -126,6 +60,12 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
         <item name="android:padding">10sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="game_title">
+        <item name="android:textColor">@color/game_color_dark</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

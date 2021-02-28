@@ -222,7 +222,6 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
         return true;
     }
 
-
     @Override
     public void didSwipe(SwipeDirection direction) {
         int xinc = 0;

@@ -27,4 +27,6 @@
     <string name="player_search">Player</string>
     <string name="score_search">Score</string>
     <string name="score_search_term_initial">=</string>
+    <string name="detail_edit">Edit</string>
+    <string name="detail_done">Save</string>
 </resources>
