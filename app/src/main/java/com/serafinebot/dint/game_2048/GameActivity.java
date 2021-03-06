@@ -2,6 +2,7 @@ package com.serafinebot.dint.game_2048;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -185,25 +186,33 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
         setVal(srcX, srcY, 0);
     }
 
-    public void makeMove(int x, int y, final int xInc, final int yInc) {
+    public void move(int[] grid, int srcX, int srcY, int dstX, int dstY) {
+        if (!inBounds(srcX, 0, GRID_WIDTH - 1) || !inBounds(srcY, 0, GRID_HEIGHT - 1) ||
+                !inBounds(srcX, 0, GRID_WIDTH - 1) || !inBounds(srcY, 0, GRID_HEIGHT - 1)) return;
+        int val = getVal(srcX, srcY, grid);
+        setVal(dstX, dstY, grid, val);
+        setVal(srcX, srcY, grid, 0);
+    }
+
+    public void moveValue(int x, int y, final int xInc, final int yInc, int[] grid, int[] sumArr) {
         int nextX = x;
         int nextY = y;
         do {
             nextX += xInc;
             nextY += yInc;
             if (!(inBounds(nextX, 0, GRID_WIDTH - 1) && inBounds(nextY, 0, GRID_HEIGHT - 1))) break;
-            int val = getVal(x, y);
-            int nextSum = getVal(nextX, nextY, this.sum);
-            int next = getVal(nextX, nextY);
+            int val = getVal(x, y, grid);
+            int nextSum = getVal(nextX, nextY, sumArr);
+            int next = getVal(nextX, nextY, grid);
             if (next == 0) {
-                move(x, y, nextX, nextY);
+                move(grid, x, y, nextX, nextY);
                 x = nextX;
                 y = nextY;
             } else if (next == val && nextSum == 0) {
                 int sum = next + val;
                 setVal(nextX, nextY, sum);
-                setVal(nextX, nextY, this.sum, 1);
-                setVal(x, y, 0);
+                setVal(nextX, nextY, sumArr, 1);
+                setVal(x, y, grid, 0);
             } else {
                 break;
             }
@@ -222,8 +231,7 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
         return true;
     }
 
-    @Override
-    public void didSwipe(SwipeDirection direction) {
+    public void makeMove(SwipeDirection direction, int[] grid, int[] sum) {
         int xinc = 0;
         int yinc = 0;
         int startX = 0;
@@ -252,22 +260,52 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
                 endY = 0;
                 break;
         }
-        Arrays.fill(this.sum, 0);
-        int[] tmp = this.grid.clone();
+        Arrays.fill(sum, 0);
         int xadd = 1;
         int yadd = 1;
         if (Math.min(startX, endX) == endX) xadd = -1;
         if (Math.min(startY, endY) == endY) yadd = -1;
         for (int y = startY; getCondition(yadd, y, endY); y += yadd) {
             for (int x = startX; getCondition(xadd, x, endX); x += xadd) {
-                int val = getVal(x, y);
+                int val = getVal(x, y, grid);
                 if (val == 0) continue;
-                makeMove(x, y, xinc, yinc);
+                moveValue(x, y, xinc, yinc, grid, sum);
             }
         }
-        addRandom();
-        if (!equal(tmp, this.grid))
+    }
+
+    public boolean checkGameOver() {
+        for (SwipeDirection direction : SwipeDirection.values()) {
+            int[] grid = this.grid.clone();
+            int[] tmp = this.grid.clone();
+            int[] sum = new int[this.grid.length];
+            makeMove(direction, grid, sum);
+            if (!equal(grid, tmp)) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void didSwipe(SwipeDirection direction) {
+        int[] tmp = this.grid.clone();
+        makeMove(direction, this.grid, this.sum);
+        if (!equal(tmp, this.grid)) {
             this.previous = tmp;
+            addRandom();
+        }
         updateGrid();
+        boolean gameOver = checkGameOver();
+        if (gameOver) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Game Over")
+                    .setMessage("There are no possible movements left...")
+                    .setPositiveButton("OK", (dialog, which) -> {
+                    })
+                    .setNegativeButton("RESTART", (dialog, which) -> {
+                        resetPressed(null);
+                    })
+                    .show();
+            this.previous = null;
+        }
     }
 }
