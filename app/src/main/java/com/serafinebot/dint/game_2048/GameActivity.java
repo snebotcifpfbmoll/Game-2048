@@ -210,7 +210,7 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
                 y = nextY;
             } else if (next == val && nextSum == 0) {
                 int sum = next + val;
-                setVal(nextX, nextY, sum);
+                setVal(nextX, nextY, grid, sum);
                 setVal(nextX, nextY, sumArr, 1);
                 setVal(x, y, grid, 0);
             } else {
@@ -260,7 +260,6 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
                 endY = 0;
                 break;
         }
-        Arrays.fill(sum, 0);
         int xadd = 1;
         int yadd = 1;
         if (Math.min(startX, endX) == endX) xadd = -1;
@@ -276,8 +275,8 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
 
     public boolean checkGameOver() {
         for (SwipeDirection direction : SwipeDirection.values()) {
-            int[] grid = this.grid.clone();
-            int[] tmp = this.grid.clone();
+            int[] grid = Arrays.copyOf(this.grid, this.grid.length);
+            int[] tmp = Arrays.copyOf(this.grid, this.grid.length);
             int[] sum = new int[this.grid.length];
             makeMove(direction, grid, sum);
             if (!equal(grid, tmp)) return false;
@@ -288,6 +287,7 @@ public class GameActivity extends AppCompatActivity implements OnSwipeListenerDe
     @Override
     public void didSwipe(SwipeDirection direction) {
         int[] tmp = this.grid.clone();
+        Arrays.fill(sum, 0);
         makeMove(direction, this.grid, this.sum);
         if (!equal(tmp, this.grid)) {
             this.previous = tmp;
